@@ -1,0 +1,12 @@
+npm-debug.log*
+lib-cov
+coverage
+node_modules/
+.npm
+*.tgz
+.env
+.rpt2_cache
+
+# package-lock.json
+dist/
+build/

@@ -1,0 +1,53 @@
+{
+    "version": "0.1",
+    "ignorePaths": [
+        "azure-pipelines/**",
+        "build/**",
+        "config/**",
+        "coverage/**",
+        "demo/**",
+        "node_modules/**",
+        "**/*junit*.xml",
+        "package-lock.json",
+        "assets/**"
+    ],
+    "ignoreWords": [
+        "datacenter",
+        "praxisconnect"
+    ],
+    "words": [
+        "builtins",
+        "cobertura",
+        "copyfiles",
+        "deidentified",
+        "devtools",
+        "discoverability",
+        "Echeverria",
+        "elementa",
+        "grayscale",
+        "Helvetica",
+        "hsla",
+        "iife",
+        "isncsci",
+        "junit",
+        "maxlength",
+        "micon",
+        "Neue",
+        "nowrap",
+        "oidc",
+        "openid",
+        "overscroll",
+        "postbuild",
+        "prebuild",
+        "Roboto",
+        "scrollbar",
+        "Segoe",
+        "signin",
+        "snackbars",
+        "sourcemap",
+        "tabindex",
+        "Telerik",
+        "usecase",
+        "xlsm"
+    ]
+}
