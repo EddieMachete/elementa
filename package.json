@@ -1,12 +1,7 @@
 {
   "author": "EddieMachete",
-  "description": "Libraries for clinical and medical research data capture and analysis.",
-  "license": "Apache-2.0",
-  "name": "elementa",
-  "repository": "https://github.com/EddieMachete/elementa.git",
-  "version": "0.0.1",
-  "scripts": {},
   "dependencies": {},
+  "description": "Libraries for clinical and medical research data capture and analysis.",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
@@ -17,5 +12,10 @@
   },
   "eslint-junit": {
     "titleTemplate": "{line} : {ruleId}"
-  }
+  },
+  "license": "Apache-2.0",
+  "name": "elementa",
+  "repository": "https://github.com/EddieMachete/elementa.git",
+  "scripts": {},
+  "version": "0.0.1"
 }
