@@ -1,17 +1,3 @@
-<!--
-@license
-Copyright (c) 2020 Eduardo Echeverria. All rights reserved.
+[![Board Status](https://rhitech.visualstudio.com/75ca2b91-c2a0-47b3-88fb-dcf1f9e60503/d598f68a-793d-4a1e-9f93-44f19057050b/_apis/work/boardbadge/5349df39-41e7-4dac-92b8-8d9e4c4cbb73)](https://rhitech.visualstudio.com/75ca2b91-c2a0-47b3-88fb-dcf1f9e60503/_boards/board/t/d598f68a-793d-4a1e-9f93-44f19057050b/Microsoft.RequirementCategory/)
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
--->
-
+# Elementa
