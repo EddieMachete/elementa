@@ -7,7 +7,8 @@
     "experimentalDecorators": true,
     "lib": [
       "dom",
-      "es6"
+      "es6",
+      "es2017.object",
     ],
     "module": "es6",
     "moduleResolution": "node",
@@ -17,13 +18,15 @@
     "sourceMap": true,
     "target": "es6",
     "paths": {
+      "@app/*": ["src/app/*"],
+      "@core/*": ["src/core/*"],
       "@ui/*": ["src/ui/*"],
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ]
 }

@@ -1,0 +1,5111 @@
+{
+  "Code": "CI-LibMV",
+  "Sections": [
+    {
+      "Name": "Section 1",
+      "FormFieldGroups": [
+        {
+            "Name": "ConcomitantTBI",
+            "Label": "1. Did the patient have a concomitant documented TBI?",
+            "Label Note": "(Any severity)",
+            "Control Type": "Radio",
+            "Control Note": "If yes, please complete the “TBI chart abstraction forms”",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Classification Type Values": "Yes | 1, No | 2",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "CentralCordSyndrome",
+            "Label": "2. Does the patient have documented central cord syndrome?",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "CentralCordSyndrome",
+            "Classification Type Values": "Yes | 1, No | 2, Unk (no documentation available) | 99",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Hypotensive24HrAfterInjury",
+            "Label": "3. Hypotensive within 24 hours after injury (systolic BP ≤ 90)*?",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "Hypotensive24HrAfterInjury",
+            "Classification Type Values": "Yes | 1, No | 2, Unk (no documentation available) | 99",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "LowestBPSystolic",
+            "Control Type": "Text",
+            "Value Type": "Integer",
+            "Null Flavors": "",
+            "Branch Logic": "[Hypotensive24HrAfterInjury]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE",
+            "Max Value": "90"
+        },
+        {
+            "Name": "LowestBPSDiastolic",
+            "Control Type": "Text",
+            "Value Type": "Integer",
+            "Null Flavors": "",
+            "Branch Logic": "[Hypotensive24HrAfterInjury]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "LowestBPLocation",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "LowestBPLocation",
+            "Classification Type Values": "Field | 1, ER | 2, Ward | 3, ICU | 4",
+            "Null Flavors": "",
+            "Branch Logic": "[Hypotensive24HrAfterInjury]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Hypoxemic24HrAfterInjury",
+            "Label": "4. Hypoxemic within 24 hours after injury (PaO2 < 60, SaO2 < 92%)?",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "Hypoxemic24HrAfterInjury",
+            "Classification Type Values": "Yes | 1, No | 2, Unk (no documentation available) | 99",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "HypoxemicPaO2Value",
+            "Control Type": "Text",
+            "Value Type": "Decimal",
+            "Null Flavors": "",
+            "Branch Logic": "[Hypoxemic24HrAfterInjury]=1",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE",
+            "Max Value": "60"
+        },
+        {
+            "Name": "HypoxemicSaO2Value",
+            "Control Type": "Text",
+            "Value Type": "Decimal",
+            "Null Flavors": "",
+            "Branch Logic": "[Hypoxemic24HrAfterInjury]=1",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE",
+            "Max Value": "92"
+        },
+        {
+            "Name": "HypoxemicSaO2Location",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "HypoxemicSaO2Location",
+            "Classification Type Values": "Field | 1, ER | 2, Ward | 3, ICU | 4",
+            "Null Flavors": "",
+            "Branch Logic": "[HypoxemicSaO2Value]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ApacheIIScore",
+            "Label": "5. Apache II Score:",
+            "Label Note": "(First 24 hours in ICU)",
+            "Control Type": "Text",
+            "Value Type": "Decimal",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE",
+            "Max Value": "67"
+        },
+        {
+            "Name": "AbdominalBinderDuringICU",
+            "Label": "6. Was there use of an abdominal binder during ICU stay?",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "AbdominalBinderDuringICU",
+            "Classification Type Values": "Yes | 1, No | 2, Unk | 99",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleEtiology1",
+            "Label": "7. Select MOST RESPONSIBLE etiology of respiratory failure resulting in mechanical ventilation:",
+            "Label Note": "Choose ONLY ONE below",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentMostResponsibleEtiology1",
+            "Classification Type Values": "Compromise of lung mechanics directly related to Spinal cord injury | 1, Diseases of the upper respiratory tract: Laryngeal edema, laryngeal obstruction, trach injury, high risk airway | 2, Pneumonia *per definition below | 3, Witnessed aspiration of gastric contents (If suspected but not confirmed aspiration, please choose pneumonia) | 4, Compromise of level of consciousness from associated: choose any if applicable below | 5, Other | 88",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleCompLOC1",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentMostResponsibleCompLOC1",
+            "Classification Type Values": "Traumatic Brain Injury | 1, ETOH/illicit drug use | 2, Hospital prescribed medications (i.e. sedation/narcotics) | 3",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology1]=5",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalEtiology1",
+            "Label": "8. Select *ANY ADDITIONAL CONTRIBUTING etiologies resulting in the continued requirement for this initial mechanical ventilation episode",
+            "Label Note": "*Collect any OTHER contributing etiologies, during the first week of MV",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentAdditionalEtiology1",
+            "Classification Type Values": "None | 0, Compromise of lung mechanics directly related to Spinal cord injury | 1, Diseases of the upper respiratory tract: Laryngeal edema, laryngeal obstruction, trach injury, high risk airway | 2, Pneumonia *per definition below | 3, Witnessed aspiration of gastric contents (If suspected but not confirmed aspiration, please choose pneumonia) | 4, Surgical procedures requiring general anesthetic | 6, Compromise of level of consciousness from associated: choose any if applicable below | 7, Other | 88",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalCompLOC1",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentAdditionalCompLOC1",
+            "Classification Type Values": "Traumatic Brain Injury | 1, ETOH/illicit drug use | 2, Hospital prescribed medications (i.e. sedation/narcotics) | 3",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(7,[MechVentAdditionalEtiology1])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitLevelOfCare1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitLevelOfCare",
+            "Classification Type Values": "1=ICU | 1, 2=Observation/HIU | 2, 3=Long term ventilation Unit(LTV) | 3",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionDate1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare1] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionTime1",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare1] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeDate1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare1] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeTime1",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare1] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLoc1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitDischLoc",
+            "Classification Type Values": "Ward | 1, ICU | 2, Obs/HIU | 3, LTV unit (not considered HIU/obs) | 4, Other Hosp | 5, Deceased | 6, Other | 7",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare1] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLocOther1",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitDischLoc1] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitLevelOfCare2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitLevelOfCare",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionDate2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionTime2",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeDate2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeTime2",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLoc2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitDischLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLocOther2",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitDischLoc2] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitLevelOfCare3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitLevelOfCare",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionDate3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionTime3",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeDate3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeTime3",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLoc3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitDischLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLocOther3",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitDischLoc3] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitLevelOfCare4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitLevelOfCare",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionDate4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionTime4",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeDate4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeTime4",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLoc4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitDischLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLocOther4",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitDischLoc4] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitLevelOfCare5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitLevelOfCare",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionDate5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionTime5",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeDate5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeTime5",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLoc5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitDischLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLocOther5",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitDischLoc5] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitLevelOfCare6",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitLevelOfCare",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionDate6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare6] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionTime6",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare6] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeDate6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare6] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeTime6",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare6] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLoc6",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitDischLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare6] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLocOther6",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitDischLoc6] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitLevelOfCare7",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitLevelOfCare",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionDate7",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare7] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionTime7",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare7] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeDate7",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare7] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeTime7",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare7] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLoc7",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitDischLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare7] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLocOther7",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitDischLoc7] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitLevelOfCare8",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitLevelOfCare",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionDate8",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare8] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionTime8",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare8] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeDate8",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare8] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeTime8",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare8] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLoc8",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitDischLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare8] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLocOther8",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitDischLoc8] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitLevelOfCare9",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitLevelOfCare",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionDate9",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare9] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitAdmissionTime9",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare9] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeDate9",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare9] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischargeTime9",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare9] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLoc9",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "SpecialCareUnitDischLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitLevelOfCare9] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "SpecialCareUnitDischLocOther9",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[SpecialCareUnitDischLoc9] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStart1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "TimeMechVentStart1",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart1] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentType1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentType1",
+            "Classification Type Values": "IMV=Invasive | 1",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart1] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStop1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart1] != '' and [MechVentOng1]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "TimeMechVentStop1",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart1] != '' and [MechVentOng1]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentOng1",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Classification Type Values": "Ongoing | 1",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart1] != '' and [DateMechVentStop1] = '' and [TimeMechVentStop1] = ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLoc1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInitLoc",
+            "Classification Type Values": "a=Field | 1, b=EMRG | 2, c=OR | 3, d=ICU | 4, e=Other Hosp | 5, f=Ward | 6, g=other | 7",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart1] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLocOther1",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentInitLoc1] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInExSuff1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInExSuff",
+            "Classification Type Values": "Yes | 1, No | 2, Unknown | 99",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart1] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStart2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "TimeMechVentStart2",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentType2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentType",
+            "Classification Type Values": "IMV=Invasive | 1, NIV=Noninvasive (i.e. BIPAP) | 2",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStop2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart2] != '' and [MechVentOng2]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "TimeMechVentStop2",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart2] != '' and [MechVentOng2]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentOng2",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart2] != '' and [DateMechVentStop2] = '' and [TimeMechVentStop2] = ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLoc2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInitLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLocOther2",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentInitLoc2] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInExSuff2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInExSuff",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleEtiology2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentEtiology",
+            "Classification Type Values": "0=None | 0, 1=Compromise of lung mechanics directly related to Spinal cord injury | 1, 2 =Diseases of the upper respiratory tract: Laryngeal edema, laryngeal obstruction, trach injury, high risk airway | 2, 3 =Pneumonia | 3, 4 =Witnessed aspiration of gastric contents/vomitus | 4, 5 =Compromise of level of consciousness | 5, 6 =Surgical procedure requiring general anesthetic | 6, 88=Other | 88",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleCompLOC2",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentCompLOC",
+            "Classification Type Values": "5.1 TBI | 1, 5.2 ETOH/illicit drug use | 2, 5.3 Hospital prescribed medications (i.e sedation/narcotics) | 3",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology2] = 5",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalEtiology2",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentEtiology",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart2] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalCompLOC2",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentCompLOC",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(5,[MechVentAdditionalEtiology2])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStart3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "TimeMechVentStart3",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentType3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentType",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStop3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart3] != '' and [MechVentOng3]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "TimeMechVentStop3",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart3] != '' and [MechVentOng3]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentOng3",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart3] != '' and [DateMechVentStop3] = '' and [TimeMechVentStop3] = ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLoc3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInitLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLocOther3",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentInitLoc3] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInExSuff3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInExSuff",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleEtiology3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentEtiology",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleCompLOC3",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentCompLOC",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology3] = 5",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalEtiology3",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentEtiology",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart3] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalCompLOC3",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentCompLOC",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(5,[MechVentAdditionalEtiology3])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStart4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "TimeMechVentStart4",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentType4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentType",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStop4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart4] != '' and [MechVentOng4]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "TimeMechVentStop4",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart4] != '' and [MechVentOng4]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentOng4",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart4] != '' and [DateMechVentStop4] = '' and [TimeMechVentStop4] = ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLoc4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInitLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLocOther4",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentInitLoc4] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInExSuff4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInExSuff",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleEtiology4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentEtiology",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleCompLOC4",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentCompLOC",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology4] = 5",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalEtiology4",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentEtiology",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart4] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalCompLOC4",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentCompLOC",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(5,[MechVentAdditionalEtiology4])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStart5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "TimeMechVentStart5",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentType5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentType",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateMechVentStop5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart5] != '' and [MechVentOng5]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "TimeMechVentStop5",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart5] != '' and [MechVentOng5]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentOng5",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart5] != '' and [DateMechVentStop5] = '' and [TimeMechVentStop5] = ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLoc5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInitLoc",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInitLocOther5",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentInitLoc5] = 7",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentInExSuff5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentInExSuff",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleEtiology5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentEtiology",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostResponsibleCompLOC5",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentCompLOC",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology5] = 5",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalEtiology5",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentEtiology",
+            "Null Flavors": "",
+            "Branch Logic": "[DateMechVentStart5] != ''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAdditionalCompLOC5",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "MechVentCompLOC",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(5,[MechVentAdditionalEtiology5])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrach1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "ETTTrach",
+            "Classification Type Values": "ETT | 1, Trach | 2",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachDateInitiated1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach1] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeInitiated1",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach1] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachDateExtubDecann1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach1] !='' and [ETTTrachNAExtubDecann1] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeExtubDecann1",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach1] !='' and [ETTTrachNAExtubDecann1] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrach2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "ETTTrach",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachDateInitiated2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach2] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeInitiated2",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach2] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachDateExtubDecann2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach2] !='' and [ETTTrachNAExtubDecann2] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeExtubDecann2",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach2] !='' and [ETTTrachNAExtubDecann2] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrach3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "ETTTrach",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachDateInitiated3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach3] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeInitiated3",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach3] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachDateExtubDecann3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach3] !='' and [ETTTrachNAExtubDecann3] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeExtubDecann3",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach3] !='' and [ETTTrachNAExtubDecann3] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrach4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "ETTTrach",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachDateInitiated4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach4] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeInitiated4",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach4] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachDateExtubDecann4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach4] !='' and [ETTTrachNAExtubDecann4] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeExtubDecann4",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach4] !='' and [ETTTrachNAExtubDecann4] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrach5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "ETTTrach",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachDateInitiated5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach5] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeInitiated5",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach5] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachDateExtubDecann5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach5] !='' and [ETTTrachNAExtubDecann5] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeExtubDecann5",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach5] !='' and [ETTTrachNAExtubDecann5] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrach6",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "ETTTrach",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachDateInitiated6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach6] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeInitiated6",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach6] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachDateExtubDecann6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach6] !='' and [ETTTrachNAExtubDecann6] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachTimeExtubDecann6",
+            "Control Type": "TimePickerWithoutSeconds",
+            "Control Note": "24 hour clock hh:mm",
+            "Value Type": "Time",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach6] !='' and [ETTTrachNAExtubDecann6] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "FormNotApplicableNoBronchoscopy",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "FormNotApplicableNoBronchoscopy",
+            "Classification Type Values": "Not applicable, No Bronchoscopy | 1",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BronchoscopyDate1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BronchoscopyDate2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BronchoscopyDate3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BronchoscopyDate4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BronchoscopyDate5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BronchoscopyDate6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BronchoscopyDate7",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BronchoscopyDate8",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BronchoscopyDate9",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BronchoscopyDate10",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBronchoscopy]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "FormNotApplicableNoRespCult",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "FormNotApplicableNoRespCult",
+            "Classification Type Values": "Not applicable, No respiratory cultures | 1",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultDate1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCult]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultSampleType1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Classification Type Values": "a=Sputum | 1, b=Nasotrach/ETT/Trach aspirate | 2, c=Bronch Spec (BAL) | 3",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate1] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode1",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Classification Type Values": "0. None/negative/Mixed oropharyngeal flora | 0, 1. Acinetobacter sp. | 1, 2. Aerogenes | 2, 3. Aeromonas sp. | 3, 4. Alcaligenes sp | 4, 5. Alcaligenes dentrificans | 5, 6. Alcaligenes foecalis | 6, 7. B. Thetaiotaomicron | 7, 8. Babesia sp. | 8, 9. Bacteriodes sp | 9, 10. Bartonella sp | 10, 11. C. Freundii | 11, 12. Campylobacter fetus | 12, 13. Capnocytophaga sp. | 13, 14. Citrobacter sp. | 14, 15. Clostridium sp. | 15, 16. Common or Mixed flora | 16, 17. Corynebacteria sp. | 17, 18. Diptheroids | 18, 19. Eikenella sp. | 19, 20. Ehrlichia sp. | 20, 21. Enterobacter sp. | 21, 22. Enterobacter cloacae | 22, 23. Enterococcus fecalis | 23, 24. Enterococcus fecium | 24, 25. Enterococcus sp. | 25, 26. Escherichia coli | 26, 27. Fusobacterim sp. | 27, 28. Hemophilus influenza | 28, 29. Klebsiella sp. | 29, 30. Prevotella sp. | 30, 31. Proteus sp. | 31, 32. Providencia sp. | 32, 33. Pseudomonas sp. | 33, 34. Pseudomonas aeuroginosa | 34, 35. Rickettsia sp. | 35, 36. Salmonella sp. | 36, 37. Serratia sp. | 37, 38. Staph aureus | 38, 39. Staph coagulase negative | 39, 40. Staph coagulase negative #2 | 40, 41. Staph epidermiditis | 41, 42. Staph sp. | 42, 43. Stenotrophomonas maltophilia | 43, 44. Strep alpha | 44, 45. Strep hemolytic c | 45, 46. Strep alpha hemoltic | 46, 47. Strep pneumoniae | 47, 48. Strep group B | 48, 49. Strep pyogens | 49, 50. Strep sp. | 50, 51. Strep viridans | 51, 52. Torulopis (Canada) Glabrate | 52, 53. Yeast | 53, 54. Yersinia pesits | 54, 55. Aspergillis sp. | 55, 56. Bipolaris sp. | 56, 57. Candidia albicans | 57, 58. Candida (non-albicans) | 58, 59. Coccidiomyces sp. | 59, 60. Pneumocystis sp. | 60, 61. Adenovirus | 61, 62. Cytomegalovirus (CMV) | 62, 97. Moraxella Catarrhalis | 97, 98. Other | 98",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate1] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther1",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode1])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Classification Type Values": "a=Hospital Acquired pneumonia | 1, b= Early onset Pneumonia | 2, c= Ventilator Associated pneumonia | 3, f= Hospital Acquired Tracheobronchitis | 9, e= Early onset ventilator associated tracheobronchitis | 8, d=Early onset Tracheobronchitis | 7, g=Ventilator Associated Tracheobronchitis | 14, e= Previous respiratory infection (colonization) | 15, f = Ongoing infection, previously coded as (a-g) above | 16",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate1] !='' and [RespCultOrganismCode1] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode2",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther2",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode2])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate2] !='' and [RespCultOrganismCode2] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode3",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther3",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode3])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate3] !='' and [RespCultOrganismCode3] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode4",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther4",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode4])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate4] !='' and [RespCultOrganismCode4] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode5",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther5",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode5])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate5] !='' and [RespCultOrganismCode5] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType6",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode6",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther6",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode6])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode6",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate6] !='' and [RespCultOrganismCode6] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate7",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType7",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode7",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther7",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode7])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode7",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate7] !='' and [RespCultOrganismCode7] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate8",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType8",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode8",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther8",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode8])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode8",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate8] !='' and [RespCultOrganismCode8] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate9",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType9",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode9",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther9",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode9])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode9",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate9] !='' and [RespCultOrganismCode9] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate10",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType10",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode10",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther10",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode10])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode10",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate10] !='' and [RespCultOrganismCode10] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate11",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType11",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode11",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther11",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode11])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode11",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate11] !='' and [RespCultOrganismCode11] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultDate12",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "RespCultSampleType12",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultSampleType",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCode12",
+            "Control Type": "MultiSelect",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultOrganismCodeOther12",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(98, [RespCultOrganismCode12])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "RespCultInfectionCode12",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "RespCultInfectionCode",
+            "Null Flavors": "",
+            "Branch Logic": "[RespCultDate12] !='' and [RespCultOrganismCode12] !=0",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "CollectionMethodInfectionCode",
+            "Label": "Collection Method for Infection Code:",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "CollectionMethodInfectionCode",
+            "Classification Type Values": "Completed by physician | 1, Abstracted, reviewed by physician | 2, Abstracted, not reviewed by physician | 3",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "FormNotApplicableNoBloodIntraAb",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "FormNotApplicableNoBloodIntraAb",
+            "Classification Type Values": "Not applicable, No blood or intra-abdominal cultures | 1",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Classification Type Values": "A=Abdominal | 1, B=Blood | 2",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate1] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate1] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther1",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism1]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate2] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate2] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther2",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism2]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate3] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate3] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther3",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism3]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate4] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate4] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther4",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism4]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate5] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate5] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther5",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism5]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen6",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate6] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism6",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate6] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther6",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism6]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate7",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen7",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate7] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism7",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate7] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther7",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism7]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate8",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen8",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate8] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism8",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate8] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther8",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism8]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate9",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen9",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate9] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism9",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate9] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther9",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism9]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate10",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen10",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate10] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism10",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate10] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther10",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism10]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate11",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen11",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate11] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism11",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate11] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther11",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism11]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate12",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen12",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate12] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism12",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate12] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther12",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism12]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate13",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen13",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate13] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism13",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate13] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther13",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism13]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate14",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen14",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate14] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism14",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate14] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther14",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism14]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureDate15",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoBloodIntraAb]  =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "BloodIntraAbCultureSpecimen15",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "BloodIntraAbCultureSpecimen",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate15] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultureOrganism15",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "OrganismCode",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureDate15] !=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "BloodIntraAbCultOrganismOther15",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[BloodIntraAbCultureOrganism15]=98",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "FormNotApplicableNoRespCultAB",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "FormNotApplicableNoRespCultAB",
+            "Classification Type Values": "Not applicable, No respiratory cultures | 1",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "Antibiotic1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Classification Type Values": "1. Acyclovir | 1, 2. Amikacin | 2, 3. Amoxicillin | 3, 4. Amoxicillin/clavulanate (clavolin) | 4, 5. Amphotericin B | 5, 6. Ampicillin | 6, 7. Ampicillin/sulbactam | 7, 8. Azithromycin | 8, 9. Aztreonam | 9, 10. Capreomycin | 10, 11. Carbenicillin indanyl sodium | 11, 12. Cefaclor | 12, 13. Cefamandole | 13, 14. Ceftizoxime | 14, 15. Cefazolin | 15, 16. Cefepime | 16, 17. Cefixime | 17, 18. Cefoperazone | 18, 19. Cefotaxime | 19, 20. Cefotetan | 20, 21. Cefoxitin | 21, 22. Ceftazidime | 22, 23. Ceftriaxone | 23, 24. Cefuroxime | 24, 25. Cephalothin | 25, 26. Chloramphenicol | 26, 27. Chloroquine | 27, 28. Ciprofloxacin | 28, 29. Clarithromycin | 29, 30. Clindamycin | 30, 31. Cloxacillin | 31, 32. Cotrimoxazole (Septra) | 32, 33. Cycloserine | 33, 34. Didanosine | 34, 35. Doxycycline | 35, 36. Erythromycin | 36, 37. Ethambutol | 37, 38. Fluconazole | 38, 39. Foscamet | 39, 40. Ganciclovir | 40, 41. Gentamicin | 41, 42. Imipenem/cilastatin | 42, 43. Indinavir | 43, 44. Isepamicin | 44, 45. Itraconazole | 45, 46. Kanamycin | 46, 47. Ketoconazole | 47, 48. Lamivudine | 48, 49. Levofloxacin | 49, 50. Mefloquine | 50, 51. Methicillin | 51, 52. Meropenem | 52, 53. Metronidazole (Flagyl) | 53, 54. Mezlocillin | 54, 55. Nafcillin | 55, 56. Nelfinavir | 56, 57. Norfloxacin | 57, 58. Ofloxacin | 58, 59. Oxacillin | 59, 60. Penicillin G | 60, 61. Netimilcin | 61, 62. Penicillin V | 62, 63. Pentamidine | 63, 64. Piperacillin | 64, 65. Piperacillin/tazobactam (Tazocin) | 65, 66. Primaquine | 66, 67. Pyrimethamine | 67, 68. Pyrimethamine/sulfadoxine | 68, 69. Quinacrine | 69, 70. Quinupristin | 70, 71. Ribavirin | 71, 72. Rifabutin | 72, 73. Rifampin | 73, 74. Ritonavir | 74, 75. Saquinavir | 75, 76. Sparfloxacin | 76, 77. Stavudine | 77, 78. Sulfamethoxazole | 78, 79. Sulfasalazine | 79, 80. Sulfisoxazole | 80, 81. Tetracycline | 81, 82. Ticarcillin | 82, 83. Ticarcillin/clavulanic acid | 83, 84. Tiecoplanin | 84, 85. Tobramycin | 85, 86. Trimethoprim | 86, 87. Trimethoprim/Sulfamethoxazole | 87, 88. Trovofloxacin | 88, 89. Vancomycin | 89, 90. Zalcitabine | 90, 91. Zidovudine (AZT) | 91, 92. Streptomycin | 92, 99. OTHER anti infective not listed on this table | 99",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOther1",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic1] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic1]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic1]!='' and [AntibioticOng1]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng1",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic1]!='' and [AntibioticStopDate1]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther2",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic2] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic2]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic2]!='' and [AntibioticOng2]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng2",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic2]!='' and [AntibioticStopDate2]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther3",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic3] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic3]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic3]!='' and [AntibioticOng3]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng3",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic3]!='' and [AntibioticStopDate3]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther4",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic4] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic4]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic4]!='' and [AntibioticOng4]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng4",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic4]!='' and [AntibioticStopDate4]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther5",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic5] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic5]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic5]!='' and [AntibioticOng5]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng5",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic5]!='' and [AntibioticStopDate5]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic6",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther6",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic6] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic6]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic6]!='' and [AntibioticOng6]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng6",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic6]!='' and [AntibioticStopDate6]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic7",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther7",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic7] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate7",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic7]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate7",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic7]!='' and [AntibioticOng7]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng7",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic7]!='' and [AntibioticStopDate7]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic8",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther8",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic8] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate8",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic8]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate8",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic8]!='' and [AntibioticOng8]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng8",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic8]!='' and [AntibioticStopDate8]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic9",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther9",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic9] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate9",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic9]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate9",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic9]!='' and [AntibioticOng9]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng9",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic9]!='' and [AntibioticStopDate9]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic10",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther10",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic10] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate10",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic10]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate10",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic10]!='' and [AntibioticOng10]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng10",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic10]!='' and [AntibioticStopDate10]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic11",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther11",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic11] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate11",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic11]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate11",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic11]!='' and [AntibioticOng11]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng11",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic11]!='' and [AntibioticStopDate11]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic12",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther12",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic12] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate12",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic12]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate12",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic12]!='' and [AntibioticOng12]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng12",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic12]!='' and [AntibioticStopDate12]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic13",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther13",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic13] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate13",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic13]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate13",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic13]!='' and [AntibioticOng13]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng13",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic13]!='' and [AntibioticStopDate13]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic14",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther14",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic14] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate14",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic14]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate14",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic14]!='' and [AntibioticOng14]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng14",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic14]!='' and [AntibioticStopDate14]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic15",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther15",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic15] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate15",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic15]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate15",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic15]!='' and [AntibioticOng15]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng15",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic15]!='' and [AntibioticStopDate15]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic16",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther16",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic16] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate16",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic16]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate16",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic16]!='' and [AntibioticOng16]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng16",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic16]!='' and [AntibioticStopDate16]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic17",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther17",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic17] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate17",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic17]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate17",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic17]!='' and [AntibioticOng17]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng17",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic17]!='' and [AntibioticStopDate17]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic18",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther18",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic18] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate18",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic18]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate18",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic18]!='' and [AntibioticOng18]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng18",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic18]!='' and [AntibioticStopDate18]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic19",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther19",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic19] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate19",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic19]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate19",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic19]!='' and [AntibioticOng19]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng19",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic19]!='' and [AntibioticStopDate19]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic20",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther20",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic20] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate20",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic20]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate20",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic20]!='' and [AntibioticOng20]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng20",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic20]!='' and [AntibioticStopDate20]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "Antibiotic21",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "Antibiotic",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoRespCultAB] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "AntibioticOther21",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic21] =99",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStartDate21",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic21]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticStopDate21",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic21]!='' and [AntibioticOng21]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "AntibioticOng21",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[Antibiotic21]!='' and [AntibioticStopDate21]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "FormNotApplicableNoVasoactiveInf",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "FormNotApplicableNoVasoactiveInf",
+            "Classification Type Values": "Not applicable, No vasoactive infusions | 1",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrug1",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Classification Type Values": "1=Vasopressin | 1, 2= Norepinephrine | 2, 3=Epinephrine | 3, 4=Dopamine | 4, 5= Phenylephrine | 5",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug1]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate1",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug1]!='' and [IVVasoactiveDrugOng1]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng1",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug1]!='' and [IVVasoactiveDrugStopDate1]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug2",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug2]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate2",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug2]!='' and [IVVasoactiveDrugOng2]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng2",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug2]!='' and [IVVasoactiveDrugStopDate2]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug3",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug3]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate3",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug3]!='' and [IVVasoactiveDrugOng3]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng3",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug3]!='' and [IVVasoactiveDrugStopDate3]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug4",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug4]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate4",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug4]!='' and [IVVasoactiveDrugOng4]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng4",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug4]!='' and [IVVasoactiveDrugStopDate4]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug5",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug5]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate5",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug5]!='' and [IVVasoactiveDrugOng5]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng5",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug5]!='' and [IVVasoactiveDrugStopDate5]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug6",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug6]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate6",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug6]!='' and [IVVasoactiveDrugOng6]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng6",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug6]!='' and [IVVasoactiveDrugStopDate6]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug7",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate7",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug7]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate7",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug7]!='' and [IVVasoactiveDrugOng7]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng7",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug7]!='' and [IVVasoactiveDrugStopDate7]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug8",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate8",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug8]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate8",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug8]!='' and [IVVasoactiveDrugOng8]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng8",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug8]!='' and [IVVasoactiveDrugStopDate8]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug9",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate9",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug9]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate9",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug9]!='' and [IVVasoactiveDrugOng9]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng9",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug9]!='' and [IVVasoactiveDrugStopDate9]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug10",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate10",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug10]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate10",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug10]!='' and [IVVasoactiveDrugOng10]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng10",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug10]!='' and [IVVasoactiveDrugStopDate10]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug11",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate11",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug11]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate11",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug11]!='' and [IVVasoactiveDrugOng11]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng11",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug11]!='' and [IVVasoactiveDrugStopDate11]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug12",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate12",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug12]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate12",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug12]!='' and [IVVasoactiveDrugOng12]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng12",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug12]!='' and [IVVasoactiveDrugStopDate12]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug13",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate13",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug13]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate13",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug13]!='' and [IVVasoactiveDrugOng13]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng13",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug13]!='' and [IVVasoactiveDrugStopDate13]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug14",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate14",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug14]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate14",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug14]!='' and [IVVasoactiveDrugOng14]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng14",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug14]!='' and [IVVasoactiveDrugStopDate14]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug15",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate15",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug15]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate15",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug15]!='' and [IVVasoactiveDrugOng15]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng15",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug15]!='' and [IVVasoactiveDrugStopDate15]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug16",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate16",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug16]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate16",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug16]!='' and [IVVasoactiveDrugOng16]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng16",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug16]!='' and [IVVasoactiveDrugStopDate16]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug17",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate17",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug17]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate17",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug17]!='' and [IVVasoactiveDrugOng17]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng17",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug17]!='' and [IVVasoactiveDrugStopDate17]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrug18",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "IVVasoactiveDrug",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoVasoactiveInf]=''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStartDate18",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug18]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugStopDate18",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug18]!='' and [IVVasoactiveDrugOng18]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "IVVasoactiveDrugOng18",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "Ong",
+            "Null Flavors": "",
+            "Branch Logic": "[IVVasoactiveDrug18]!='' and [IVVasoactiveDrugStopDate18]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "FormNotApplicableNoComplication",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "FormNotApplicableNoComplication",
+            "Classification Type Values": "Not applicable, No complications | 1",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "PulmonaryEmbolismHosp",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoComplication]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "PulmonaryEmbolismICU",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[PulmonaryEmbolismHosp]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DVTLowerLimbOrLimbsHosp",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoComplication]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DVTLowerLimbOrLimbsICU",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[DVTLowerLimbOrLimbsHosp]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DVTUpperLimbOrLimbsHosp",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoComplication]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DVTUpperLimbOrLimbsICU",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[DVTUpperLimbOrLimbsHosp]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DocumentedARDSHosp",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoComplication]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DocumentedARDSICU",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[DocumentedARDSHosp]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "CardiacArrestHosp",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[FormNotApplicableNoComplication]=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "CardiacArrestPreHosp",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[CardiacArrestHosp]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "CardiacArrestER",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[CardiacArrestHosp]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "CardiacArrestInHosp",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[CardiacArrestHosp]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "CardiacArrestICU",
+            "Control Type": "DropDown",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[CardiacArrestHosp]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "CollectedBy",
+            "Label": "Collected by:",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DateAbstractionCompleted",
+            "Label": "Date Abstraction Completed:",
+            "Control Type": "Text",
+            "Control Note": "YYYY-MM-DD",
+            "Value Type": "Date",
+            "Null Flavors": "",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE",
+            "Max Date": "TODAY"
+        },
+        {
+            "Name": "HypoxemicPaO2Location",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "HypoxemicPaO2Location",
+            "Classification Type Values": "Field | 1, ER | 2, Ward | 3, ICU | 4",
+            "Null Flavors": "",
+            "Branch Logic": "[HypoxemicPaO2Value]!=''",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostEtiologyOther1",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology1] = 88",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAddEtiologyOther1",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(88,[MechVentAdditionalEtiology1])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostEtiologyOther2",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology2] = 88",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAddEtiologyOther2",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(88,[MechVentAdditionalEtiology2])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostEtiologyOther3",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology3] = 88",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAddEtiologyOther3",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(88,[MechVentAdditionalEtiology3])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostEtiologyOther4",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology4] = 88",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAddEtiologyOther4",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(88,[MechVentAdditionalEtiology4])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentMostEtiologyOther5",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[MechVentMostResponsibleEtiology5] = 88",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "MechVentAddEtiologyOther5",
+            "Label": "Other (specify):",
+            "Control Type": "Text",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "inSet(88,[MechVentAdditionalEtiology5])",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "ETTTrachNAExtubDecann1",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "NAONGOING",
+            "Classification Type Values": "N/A: ongoing | 1",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach1] !='' and [ETTTrachDateExtubDecann1] ='' and [ETTTrachTimeExtubDecann1] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachNAExtubDecann2",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "NAONGOING",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach2] !='' and [ETTTrachDateExtubDecann2] ='' and [ETTTrachTimeExtubDecann2] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachNAExtubDecann3",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "NAONGOING",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach3] !='' and [ETTTrachDateExtubDecann3] ='' and [ETTTrachTimeExtubDecann3] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachNAExtubDecann4",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "NAONGOING",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach4] !='' and [ETTTrachDateExtubDecann4] ='' and [ETTTrachTimeExtubDecann4] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachNAExtubDecann5",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "NAONGOING",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach5] !='' and [ETTTrachDateExtubDecann5] ='' and [ETTTrachTimeExtubDecann5] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "ETTTrachNAExtubDecann6",
+            "Control Type": "Checkbox",
+            "Value Type": "Classification",
+            "Classification Type Name": "NAONGOING",
+            "Null Flavors": "",
+            "Branch Logic": "[ETTTrach6] !='' and [ETTTrachDateExtubDecann6] ='' and [ETTTrachTimeExtubDecann6] =''",
+            "Is Identifying": "FALSE",
+            "Required": "FALSE"
+        },
+        {
+            "Name": "DeidReportComplications",
+            "Label": "DEIDENTIFIED report for any VTE events (if yes for pulmonary embolism or DVT):",
+            "Control Type": "Radio",
+            "Value Type": "Classification",
+            "Classification Type Name": "YesNo",
+            "Null Flavors": "",
+            "Branch Logic": "[PulmonaryEmbolismHosp]=1 or [PulmonaryEmbolismICU]=1 or [DVTLowerLimbOrLimbsHosp]=1 or [DVTLowerLimbOrLimbsICU]=1 or [DVTUpperLimbOrLimbsHosp]=1 or [DVTUpperLimbOrLimbsICU]=1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE"
+        },
+        {
+            "Name": "DeidReportComplicationsText",
+            "Control Type": "TextArea",
+            "Control Note": "Please ensure no identifiers are included in this report.",
+            "Value Type": "Annotation",
+            "Null Flavors": "",
+            "Branch Logic": "[DeidReportComplications] = 1",
+            "Is Identifying": "FALSE",
+            "Required": "TRUE",
+            "Control Css": "width:500px;"
+        }
+      ]
+    }
+  ]
+}
