@@ -1,0 +1,49 @@
+{
+  "Code": "test-form",
+  "Id": 2,
+  "Sections": [
+    {
+      "Name": "Section 1",
+      "FormFields": [
+        {
+          "Name": "a",
+          "ControlType": "Text",
+          "ValueType": "Integer",
+          "NullFlavors": "",
+          "IsIdentifying": false,
+          "Required": true,
+          "MaxValue": "90"
+        },
+        {
+          "Name": "b",
+          "ControlType": "Text",
+          "ValueType": "Integer",
+          "NullFlavors": "",
+          "IsIdentifying": false,
+          "Required": true,
+          "MaxValue": "90"
+        },
+        {
+          "Name": "c",
+          "Calculation": "[a]+[b]",
+          "ControlType": "Text",
+          "ValueType": "Integer",
+          "NullFlavors": "",
+          "BranchLogic": "",
+          "IsIdentifying": false,
+          "Required": true,
+          "MaxValue": "180"
+        },
+        {
+          "Name": "d",
+          "ControlType": "Text",
+          "ValueType": "Integer",
+          "NullFlavors": "",
+          "BranchLogic": "[c]>40",
+          "IsIdentifying": false,
+          "Required": true
+        }
+      ]
+    }
+  ]
+}

@@ -7,6 +7,9 @@ import * as Reducers from './reducers';
 export const appStore: IDataStore<IAppState> = {
   state: {
     currentForm: null,
+    valuesLastUpdated: {},
+    values: {},
+    currentFormMarkup: '',
     status: StatusCodes.NotInitialized,
   },
   subscribe: function (handler) {

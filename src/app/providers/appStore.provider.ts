@@ -8,11 +8,11 @@ export class AppStoreProvider implements IAppStoreProvider {
   public constructor(private appStore: IDataStore<IAppState>) {
   }
   
-  public setCurrentForm(form: Form): Promise<void> {
+  public setCurrentForm(form: Form, values: { [id: string]: FormFieldValue }): Promise<void> {
     this.appStore.dispatch(
       {
         type: Actions.SET_CURRENT_FORM,
-        payload: form,
+        payload: { form, values },
       }
     );
 
@@ -35,6 +35,15 @@ export class AppStoreProvider implements IAppStoreProvider {
   }
 
   public updateValues(updatedFormFieldValues: { [id: string]: FormFieldValue }): Promise<void> {
+    console.log(updatedFormFieldValues);
+
+    this.appStore.dispatch(
+      {
+        type: Actions.UPDATE_FORM_FIELD_VALUES,
+        payload: updatedFormFieldValues,
+      }
+    );
+
     return Promise.resolve();
   }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-import { Form } from "@core/domain";
+import { Form, FormFieldValue } from "@core/domain";
 
 export class StatusCodes {
   public static Initializing: number = 2;
@@ -11,6 +11,9 @@ export class StatusCodes {
 }
 
 export interface IAppState {
+  currentFormMarkup: string;
+  valuesLastUpdated: { [id: string]: FormFieldValue };
+  values: { [id: string]: FormFieldValue }
   currentForm: Form;
   status: number;
 }

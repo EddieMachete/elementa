@@ -2,6 +2,7 @@
 
 export interface IFormData {
   Code: string;
+  Id: number;
   Sections: IFormSectionData[];
 }
 
@@ -11,15 +12,18 @@ export interface IFormSectionData {
 }
 
 export interface IFormFieldData {
-  Name: string;
-  Label: string;
-  LabelNote: string;
-  ControlType: string;
-  ControlNote: string;
-  ValueType: string;
+  BranchLogic: string;
+  Calculation: string;
   ClassificationTypeName: string;
   ClassificationTypeValues: string;
+  ControlNote: string;
+  ControlType: string;
+  IsIdentifying: boolean;
+  Label: string;
+  LabelNote: string;
+  MaxValue: string;
+  Name: string;
   NullFlavors: string;
-  IsIdentifying: string;
-  Required: string;
+  Required: boolean;
+  ValueType: string;
 }

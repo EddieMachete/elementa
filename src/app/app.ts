@@ -1,5 +1,6 @@
 import { IAppState, IAppStoreProvider, IFormProvider, StatusCodes } from "@core/boundaries";
-import { initializeAppUseCase } from "@core/usecases";
+import { FormFieldValue } from "@core/domain";
+import { initializeAppUseCase, updateFormFieldUseCase } from "@core/usecases";
 import { loadFormUseCase } from "@core/usecases/loadForm.useCase";
 import {
   AppStoreProvider,
@@ -27,6 +28,21 @@ export class App {
     loadFormUseCase(this.appStoreProvider, this.formProvider, id);
   }
 
+  public updateFormField(formFieldName: string, value: string): void {
+    const state = appStore.getState();
+
+    if(!state.values[formFieldName]) {
+      throw `Form field [${formFieldName}] was not found in the current form.`;
+    }
+
+    const updatedValues: { [id: string]: FormFieldValue } = {};
+    const clonedFormFieldValue: FormFieldValue = state.values[formFieldName].clone();
+    clonedFormFieldValue.valueString = value;
+    updatedValues[formFieldName] = clonedFormFieldValue;
+
+    updateFormFieldUseCase(this.appStoreProvider, state.currentForm, state.values, updatedValues);
+  }
+
   public disconnect(): void {
     this.unsubscribeFromStoreHandler();
   }
@@ -36,5 +52,21 @@ export class App {
       console.log(`The application has been initialized and is ready`);
       return;
     }
+
+    for (const [key, value] of Object.entries(state.valuesLastUpdated)) {
+      console.log(`[${key}] => ${value}`);
+      // const field: HTMLElement = this.shadowRoot.getElementById(key);
+
+      // if (value.errorMessage) {
+      //   field.setAttribute('error', 'Please answer');
+      // } else if (field.hasAttribute('error')) {
+      //   field.removeAttribute('error');
+      // }
+    }
+
+    // if (state.valuesLastUpdated.c) {
+    //   this.shadowRoot.querySelector('[name=\'c\']').setAttribute('value', state.valuesLastUpdated.c.valueString);
+    //   this.shadowRoot.querySelector('[name=\'d\']').setAttribute('value', state.valuesLastUpdated.d.valueString);
+    // }
   }
 }

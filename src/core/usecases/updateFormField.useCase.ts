@@ -87,18 +87,20 @@ function updateCalculatedFields(
  * 7. The system updates the application state and sets the edit-form-state to ready;
 */
 // 1. User provides values for one or more fields;
-export function updateFormFieldUseCase(
-  formStoreProvider: IAppStoreProvider,
+export async function updateFormFieldUseCase(
+  appStoreProvider: IAppStoreProvider,
   form: Form,
   formFieldValues: { [id: string]: FormFieldValue },
   updatedFormFieldValues: { [id: string]: FormFieldValue },
-): void {
+): Promise<void> {
   // 2. The sets the edit-form-state to updating-values;
-  formStoreProvider.updatingFormValues()
+  appStoreProvider.updatingFormValues()
     // 3. The system validates the values;
     .then((): void => validateUpdatedFields(form, updatedFormFieldValues))
     // 4. The system updates the calculated fields
     .then(() => updateCalculatedFields(form, formFieldValues, updatedFormFieldValues))
     // 7. The system updates the application state and sets the edit-form-state to ready;
-    .then(() => formStoreProvider.updateValues(updatedFormFieldValues));
+    .then(() => appStoreProvider.updateValues(updatedFormFieldValues));
+
+    return Promise.resolve();
 }
