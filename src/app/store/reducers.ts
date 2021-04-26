@@ -6,14 +6,14 @@ import { Actions } from './actions';
 import { IActionWithPayload } from './iActionWithPayload';
 
 const currentForm = (state: IAppState = null, action: IActionWithPayload<Form>): IAppState => {
-  if (action.type !== Actions.SET_CURRENT_EXAM) {
+  if (action.type !== Actions.SET_CURRENT_FORM) {
       return state;
   }
 
   return Object.assign(
     {},
     state,
-    { currentExam: action.payload }
+    { currentForm: action.payload }
   );
 };
 
