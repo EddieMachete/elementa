@@ -1,3 +1,5 @@
+'use strict';
+
 import { IAppState, IAppStoreProvider, IFormProvider, StatusCodes } from "@core/boundaries";
 import { FormFieldValue } from "@core/domain";
 import { initializeAppUseCase, updateFormFieldUseCase } from "@core/usecases";
@@ -19,7 +21,7 @@ export class App {
     this.appStoreProvider = new AppStoreProvider(appStore);
     this.formProvider = new FormProvider(http, dataEndpoint);
 
-    this.unsubscribeFromStoreHandler = appStore.subscribe((state: IAppState, actionType: string) => this.stateChanged(state, actionType))
+    this.unsubscribeFromStoreHandler = appStore.subscribe((state: IAppState, actionType: string) => this.stateChanged(state, actionType));
 
     initializeAppUseCase(this.appStoreProvider);
   }
