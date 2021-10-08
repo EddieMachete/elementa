@@ -3,11 +3,12 @@
 import { FormField, FormSection } from '@core/domain';
 
 export class Form {
-  public name: string;
-  public code: string;
-  public sections: FormSection[] = [];
-  public formFields: { [id: string]: FormField } = {};
   public calculatedFields: { [id: string]: FormField } = {};
+  public code: string;
+  public dynamicFormFields: { [id: string]: FormField } = {};
+  public formFields: { [id: string]: FormField } = {};
+  public name: string;
+  public sections: FormSection[] = [];
 
   public addSection(section: FormSection): void {
     this.sections.push(section);

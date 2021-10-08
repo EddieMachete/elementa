@@ -1,6 +1,44 @@
 {
   "Code": "test-form",
   "Id": 2,
+  "DynamicFormFields": [
+    {
+      "Name": "address-street-name",
+      "ControlType": "Text",
+      "ValueType": "String",
+      "NullFlavors": "",
+      "BranchLogic": "",
+      "IsIdentifying": false,
+      "Required": true
+    },
+    {
+      "Name": "address-country",
+      "ControlType": "Text",
+      "ValueType": "String",
+      "NullFlavors": "",
+      "BranchLogic": "",
+      "IsIdentifying": false,
+      "Required": true
+    },
+    {
+      "Name": "address-province",
+      "ControlType": "Text",
+      "ValueType": "String",
+      "NullFlavors": "",
+      "BranchLogic": "",
+      "IsIdentifying": false,
+      "Required": true
+    },
+    {
+      "Name": "address-postal-code",
+      "ControlType": "Text",
+      "ValueType": "String",
+      "NullFlavors": "",
+      "BranchLogic": "",
+      "IsIdentifying": false,
+      "Required": true
+    }
+  ],
   "Sections": [
     {
       "Name": "Section 1",
@@ -40,6 +78,51 @@
           "ValueType": "Integer",
           "NullFlavors": "",
           "BranchLogic": "[c]>40",
+          "IsIdentifying": false,
+          "Required": true
+        },
+        {
+          "Name": "branchy",
+          "ControlType": "address",
+          "ValueType": "Integer",
+          "NullFlavors": "",
+          "BranchLogic": "[c]>40",
+          "IsIdentifying": false,
+          "Required": true
+        },
+        {
+          "Name": "home-address-street-name",
+          "ControlType": "Text",
+          "ValueType": "String",
+          "NullFlavors": "",
+          "BranchLogic": "",
+          "IsIdentifying": false,
+          "Required": true
+        },
+        {
+          "Name": "home-address-country",
+          "ControlType": "Text",
+          "ValueType": "String",
+          "NullFlavors": "",
+          "BranchLogic": "",
+          "IsIdentifying": false,
+          "Required": true
+        },
+        {
+          "Name": "home-address-province",
+          "ControlType": "Text",
+          "ValueType": "String",
+          "NullFlavors": "",
+          "BranchLogic": "",
+          "IsIdentifying": false,
+          "Required": true
+        },
+        {
+          "Name": "home-address-postal-code",
+          "ControlType": "Text",
+          "ValueType": "String",
+          "NullFlavors": "",
+          "BranchLogic": "",
           "IsIdentifying": false,
           "Required": true
         }

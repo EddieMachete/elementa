@@ -1,0 +1,49 @@
+<form>
+    <section>
+        <div>
+            <label for="a" />
+            <br/>
+            <input type="number" name="a" id="a"/>
+        </div>
+        <div>
+            <label for="b" />
+            <br/>
+            <input type="number" name="b" id="b"/>
+        </div>
+        <div>
+            <label for="c" />
+            <br/>
+            <input type="number" name="c" id="c"/>
+        </div>
+        <div>
+            <label for="d" />
+            <br/>
+            <input type="number" name="d" id="d"/>
+        </div>
+        <div>
+            <label for="branchy" />
+            <br/>
+            <input type="number" name="branchy" id="branchy"/>
+        </div>
+        <div>
+            <label for="home-address-street-name" />
+            <br/>
+            <input type="text" name="home-address-street-name" id="home-address-street-name"/>
+        </div>
+        <div>
+            <label for="home-address-country" />
+            <br/>
+            <input type="text" name="home-address-country" id="home-address-country"/>
+        </div>
+        <div>
+            <label for="home-address-province" />
+            <br/>
+            <input type="text" name="home-address-province" id="home-address-province"/>
+        </div>
+        <div>
+            <label for="home-address-postal-code" />
+            <br/>
+            <input type="text" name="home-address-postal-code" id="home-address-postal-code"/>
+        </div>
+    </section>
+</form>

@@ -3,21 +3,22 @@
 import { FormSection } from '@core/domain';
 
 export class FormField {
-  calculation: string;
-  classificationTypeName: string;
-  classificationTypeValues: string;
-  controlNote: string;
-  controlType: string;
-  isIdentifying: boolean;
-  isRequired: boolean;
-  label: string;
-  labelNote: string;
-  name: string;
-  nullFlavors: string;
-  ordinal: number;
-  section: FormSection;
-  skipLogic: string;
-  skipped: boolean;
-  value: string;
-  valueType: string;
+  public calculation: string;
+  public classificationTypeName: string;
+  public classificationTypeValues: string;
+  public controlNote: string;
+  public controlType: string;
+  public isDynamic: boolean;
+  public isIdentifying: boolean;
+  public isRequired: boolean;
+  public label: string;
+  public labelNote: string;
+  public name: string;
+  public nullFlavors: string;
+  public ordinal: number;
+  public section: FormSection;
+  public skipLogic: string;
+  public skipped: boolean;
+  public value: string;
+  public valueType: string;
 }
