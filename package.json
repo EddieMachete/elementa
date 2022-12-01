@@ -3,11 +3,18 @@
   "dependencies": {},
   "description": "Libraries for clinical and medical research data capture and analysis.",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@rollup/plugin-typescript": "^6.1.0",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
+    "copyfiles": "^2.4.1",
     "cspell": "^4.1.0",
     "eslint": "^7.10.0",
     "eslint-plugin-typescript": "^0.14.0",
+    "http-server": "^0.12.3",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.45.2",
     "typescript": "^4.0.3"
   },
   "eslint-junit": {
@@ -16,6 +23,11 @@
   "license": "Apache-2.0",
   "name": "elementa",
   "repository": "https://github.com/EddieMachete/elementa.git",
-  "scripts": {},
+  "scripts": {
+    "prebuild": "rimraf ./build",
+    "build": "rollup -c",
+    "_postbuild": "copyfiles assets/**/* build",
+    "start": "http-server build/ -s -c-1 -p 44333"
+  },
   "version": "0.0.1"
 }
